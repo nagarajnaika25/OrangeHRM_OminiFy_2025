@@ -75,10 +75,15 @@ public class PIMPage
     
     
     //Add Employess
-    public String addEmployee(String first, String middle, String last) {
+    public String addEmployee(String first, String middle, String last) 
+    
+    {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         goToPIM();
+        
+        //Click Add button
         wait.until(ExpectedConditions.elementToBeClickable(addEmployeeButton)).click();
+        //Employee data
         wait.until(ExpectedConditions.visibilityOf(firstNameInput));
         firstNameInput.clear();
         firstNameInput.sendKeys(first);
@@ -86,62 +91,73 @@ public class PIMPage
         middleNameInput.sendKeys(middle);
         lastNameInput.clear();
         lastNameInput.sendKeys(last);
+        
+        //Emp Id
         String empId = employeeIdInput.getAttribute("value").trim();
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("oxd-form-loader")));
+        //Save
         saveButton.click();
-        try {
+        try 
+        {
             wait.until(ExpectedConditions.visibilityOf(successmsg));
-        } catch (Exception e) {
+         } 
+        catch (Exception e) 
+        {
             System.out.println("Success toast not found. Continuing anyway.");
         }
         driver.navigate().refresh();
         wait.until(ExpectedConditions.visibilityOf(pimTab));
+        //Retrun Employee Id
         return empId;
     }
 
     
-   
-   
-
-    //Click to Employeelist
-    public void goToEmployeeList() 
-    {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement empListTab = wait.until(ExpectedConditions.elementToBeClickable(
-            By.xpath("//a[text()='Employee List']")));
-        empListTab.click();
-    }
-    
-    
     //Verifying Employee Name and Id
 
     public boolean verifyEmployeeById(String empIdToFind, String expectedFullName, ExtentTest test) throws InterruptedException {
-        while (true) {
+        while (true) 
+        {
+        	
+        	//Tabel rows
             wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='oxd-table-card']")));
             List<WebElement> rows = driver.findElements(By.xpath("//div[@class='oxd-table-card']"));
 
+           //Iterate row
             for (WebElement row : rows)
-            
-            
             {
-                List<WebElement> cells = row.findElements(By.xpath(".//div[contains(@class, 'oxd-table-cell')]"));
+            	
+               //Iterate cells
+            	List<WebElement> cells = row.findElements(By.xpath(".//div[contains(@class, 'oxd-table-cell')]"));
 
-                for (WebElement cell : cells) {
+            	//Iterate cell
+                for (WebElement cell : cells) 
+                {
                     String text = cell.getText().trim();
-                    if (text.equalsIgnoreCase(empIdToFind)) {
+                    //To verify EmployeeId and Name 
+                    if (text.equalsIgnoreCase(empIdToFind)) 
+                    {
                         System.out.println("Name Verified: " + expectedFullName + " | ID: " + empIdToFind);
                         test.pass("Name Verified: " + expectedFullName + " | ID: " + empIdToFind);
+                       
+                        //Return EmployeeId and Name 
                         return true;
+                        
                     }
                 }
 
-                if (cells.size() >= 3) {
+                //Check  each cells
+                if (cells.size() >= 3) 
+                {
+                	//Iterate  cells data
                     String empId = cells.get(0).getText().trim();
                     String name = cells.get(1).getText().trim();
                     String surname = cells.get(2).getText().trim();
                     String fullName = (name + " " + surname).replaceAll("\\s+", " ").trim();
                     
-                    if (empId.equalsIgnoreCase(empIdToFind)) {
+                    
+                    //Compare and verify if the updated employee ID has been saved
+                    if (empId.equalsIgnoreCase(empIdToFind))
+                    {
                         System.out.println("Name Verified: " + fullName + " | ID: " + empId);
                         test.pass("Verified: " + fullName + " | ID: " + empId);
                         return true;

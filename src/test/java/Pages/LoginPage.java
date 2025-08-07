@@ -31,12 +31,10 @@ public class LoginPage {
 	
 	WebDriver driver;
 	
-	
-	public LoginPage(WebDriver  d)
+	//Constrocter 
+	public LoginPage(WebDriver  d)  
 	{
-		
-
-		driver = d;//Store
+		driver = d;//Stored webdriver object to here
 		PageFactory.initElements(driver, this);// This refers to driver Object
 
 	}
@@ -54,20 +52,14 @@ public class LoginPage {
    
 	}
 	
-	
+	//Error meassgae
 	public String ErrorMessage()
 	
 	{
-		
-		return errormsg.getText();
-		
-		
+	return errormsg.getText();
+	
 	}
 
-
-
-	
-	
 	
 	}
 

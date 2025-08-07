@@ -28,7 +28,7 @@ public class BaseTestsetup {
         
         {
            
-        	driver.quit();
+        	driver.quit(); //Close all browser
        
         
         }

@@ -36,6 +36,7 @@ public class LoginTest extends BaseTestsetup {
         scrshot=new ScreenShot(driver);
     }
 
+    //Valid Login
     @Test(priority=1)
     public void validLoginTest() {
         test = report.createTest("Valid Login Test");
@@ -53,6 +54,8 @@ public class LoginTest extends BaseTestsetup {
         
     }
 
+    
+    //Invalid Login
     @Test(priority=2)
     public void invalidLoginTest() throws InterruptedException {
         
