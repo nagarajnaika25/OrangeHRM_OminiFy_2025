@@ -42,14 +42,14 @@ public class LoginTest extends BaseTestsetup {
         scrshot.get_ScreenShot("Before  Validlogin");
         test.info("Attempting login with valid credentials");
         lgPage.login("Admin", "admin123");
-
+        scrshot.get_ScreenShot("After ValidLogin_Dashboard");
         String currentUrl = driver.getCurrentUrl();
         boolean isLoggedIn = currentUrl.contains("dashboard");
 
         Assert.assertTrue(isLoggedIn, "Expected to be on dashboard after login");
         test.pass("Login successful - redirected to dashboard");
         
-        scrshot.get_ScreenShot("After ValidLogin");
+      
         
     }
 
