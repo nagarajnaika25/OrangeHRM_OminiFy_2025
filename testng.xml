@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="ParallelBrowserTest" parallel="tests" thread-count="2">
+
+<test  name="ChromeTest">
+<parameter name="browser" value="chrome"></parameter>
+<classes>
+<class name="OrangeHRMTest.LoginTest"/> 
+</classes>
+</test>
+
+
+<test  name="EdgeTest">
+<parameter name="browser" value="Edge"></parameter>
+<classes>
+<class name="OrangeHRMTest.LoginTest"/> 
+</classes>
+</test>
+
+
+
+</suite>
