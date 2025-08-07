@@ -76,15 +76,16 @@ public class LoginTest extends BaseTestsetup {
     }
 
     @AfterMethod
-    public void tearDownTest() {
-        report.flush(); // Save ExtentReport
+    public void tearDownTest() 
+    {
         tearDown();     // Close browser
     }
     
     
     
     @AfterTest
-    public void flushReport() {
+    public void flushReport() 
+    {
         report.flush();  
     }
 }

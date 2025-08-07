@@ -12,17 +12,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class LoginPage {
 	
 	
-	
+	//Username
     @FindBy(name = "username")
     WebElement username;
-
+   //Passwprd
     @FindBy(name = "password")
     WebElement password;
-
+    //Login button
     @FindBy(xpath = "//button[@type='submit']")
     WebElement loginBtn;
-	
-	
+    //Error messsage
 	@FindBy(xpath="//div[@class=\"oxd-alert oxd-alert--error\"]")
 	WebElement errormsg;
 	
